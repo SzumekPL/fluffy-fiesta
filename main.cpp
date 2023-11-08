@@ -22,6 +22,42 @@ int main()
 
         if (input == "y")
         {
+            std::filesystem::directory_entry entry{".\\ff15"};
+            std::cout << entry << "\n";
+            if(entry.exists())
+            {
+                std::cout << "file exist\n";
+            }
+            else
+            {
+                while (true)
+                {
+                    std::cout << "ff doesnt exist, do you want to init? (y/n)\n";
+
+                    std::string input;
+                    std::cin >> input;
+
+                    //transform string to lower case
+                    std::transform(input.begin(), input.end(), input.begin(), ::tolower);
+
+                    if (input == "y")
+                    {
+                        std::filesystem::create_directories("ff15");
+                        break;
+                    }
+                    else if ( input == "n" )
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        std::cout << "Unknow command, try again\n";
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    }
+                }
+            }
+
             const std::filesystem::path sandbox{"sandbox"};
             std::filesystem::create_directories(sandbox/"dir1"/"dir2");
             std::ofstream{sandbox/"file1.txt"};
@@ -37,7 +73,7 @@ int main()
             }
 
             // delete the sandbox dir and all contents within it, including subdirs
-            std::filesystem::remove_all(sandbox);
+            //std::filesystem::remove_all(sandbox);
             break;
         }
         else if (input == "n")
