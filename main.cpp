@@ -3,7 +3,6 @@
 #include <fstream>
 #include <algorithm>
 #include <chrono>
-#include <format>
 
 short chooseOption(std::string optionName)
 {
