@@ -61,9 +61,7 @@ void initFFDirectory(std::filesystem::path dirPath)
         }
 
         lastMod << "File: " << entry->path().relative_path().string() << "\n";
-        lastMod << "Last Modified: ";
-        lastMod << std::filesystem::last_write_time(entry->path());
-        lastMod << "\n";
+        lastMod << "Last Modified: " << std::filesystem::last_write_time(entry->path()) << "\n";
         lastMod << "-----------------------------" << "\n";
     }
 }
